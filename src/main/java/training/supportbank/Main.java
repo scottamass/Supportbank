@@ -29,13 +29,24 @@ public class Main {
 
         //   }
         if (command.equals("1")) {
-            System.out.println("please type account name");
+            //  System.out.println("please type account name");
+            //String search = inputScanner.nextLine();
+
 
             for (Account account : accounts) {
+
                 List<Transaction> transactionsList = getTransactionsForAccount(transactions, account);
+                //      if (account.equals("Sarah T")) {
+
                 System.out.println(transactionsList);
+
+                //     }
+               
             }
+
+
         }
+
         if (command.equals("2")) {
             for (Account account : accounts) {
                 System.out.println(account.name);
