@@ -11,6 +11,8 @@ import java.util.Scanner; // Scanner to read text file
 public class Main {
     public static void main(String args[]) {
 
+        int menu = 4;
+
 
         // be able to read csv file
         //reformat code
@@ -26,69 +28,23 @@ public class Main {
         //      System.out.println(transaction);
 
         //   }
-        for (Account account : accounts) {
-            List<Transaction> transactionsList = getTransactionsForAccount(transactions, account);
-            System.out.println(transactionsList);
+        if (command.equals("1")) {
+            System.out.println("please type account name");
 
-        }
-
-
-    }
-
-
-    //Step 4
-    // Create list of accounts
-
-
-    // step 5
-    //run through each trans action
-
-    private static boolean doesAccountExist(List<Account> accounts, String name) {
-        for (Account account : accounts) {
-            if (account.name.equals(name)) {
-                return true;
-            }
-
-
-        }
-        return false;
-    }
-
-
-    private static List<Account> createEmptyAccounts(List<Transaction> transactions) {
-        ArrayList<Account> accounts = new ArrayList<>();
-        for (Transaction transaction : transactions) {
-            if (doesAccountExist(accounts, transaction.from) == false) {
-                Account account = new Account(transaction.from);
-                accounts.add(account);
-
-            }
-            if (doesAccountExist(accounts, transaction.to) == false) {
-                Account account = new Account(transaction.to);
-                accounts.add(account);
-            }
-
-        }
-        return accounts;
-    }
-
-    private void addAndRemoveBalance() {
-
-
-    }
-
-    private static List<Transaction> getTransactionsForAccount(List<Transaction> transactions, Account account) {
-        ArrayList<Transaction> accountTransactions = new ArrayList<>();
-        for (Transaction transaction : transactions) {
-            if (transaction.from.equals(account.name)) {
-                accountTransactions.add(transaction);
-            }
-            if (transaction.to.equals(account.name)) {
-                accountTransactions.add(transaction);
+            for (Account account : accounts) {
+                List<Transaction> transactionsList = getTransactionsForAccount(transactions, account);
+                System.out.println(transactionsList);
             }
         }
-        return accountTransactions;
+        if (command.equals("2")) {
+            for (Account account : accounts) {
+                System.out.println(account.name);
+                System.out.println(account.totalBalance);
+            }
+        }
+
     }
+
 
     private static List<Transaction> populateTransactions() {
         ArrayList<Transaction> transactions = new ArrayList<>();
@@ -103,7 +59,11 @@ public class Main {
 
                 List<String> list = Arrays.asList(data.split(","));
 
-                Transaction transaction = new Transaction(list.get(0), list.get(1), list.get(2), list.get(3), Float.parseFloat(list.get(4)));
+                Transaction transaction = new Transaction(list.get(0),
+                        list.get(1),
+                        list.get(2),
+                        list.get(3),
+                        Float.parseFloat(list.get(4)));
                 transactions.add(transaction);
             }
             fileScanner.close();
@@ -115,5 +75,72 @@ public class Main {
 
         return transactions;
     }
+    //Step 4
+    // Create list of accounts
+
+
+    // step 5
+    //run through each trans action
+
+
+    // check if account exists  for account in accounts
+    private static boolean doesAccountExist(List<Account> accounts, String name) {
+        for (Account account : accounts) {
+            if (account.name.equals(name)) {
+                return true;
+            }
+
+
+        }
+        return false;
+    }
+
+    // create an account if doesAccountExists is fale then below runs
+    private static List<Account> createEmptyAccounts(List<Transaction> transactions) {
+        ArrayList<Account> accounts = new ArrayList<>();
+        for (Transaction transaction : transactions) {
+            if (doesAccountExist(accounts, transaction.from) == false) {
+                Account account = new Account(transaction.from);
+                accounts.add(account);
+
+
+            }
+            if (doesAccountExist(accounts, transaction.to) == false) {
+                Account account = new Account(transaction.to);
+                accounts.add(account);
+            }
+
+        }
+        return accounts;
+    }
+
+    private void addToAccount() {
+        // check for trans actions too  name and add to account
+        ArrayList<Transaction> addTransactions = new ArrayList<>();
+
+
+    }
+
+    private void subtractFromAccount(Transaction transaction, Account account) {
+        // check for trans actions too  name and add to account
+
+    }
+
+    // this gets all transactions for each account
+    private static List<Transaction> getTransactionsForAccount(List<Transaction> transactions, Account account) {
+        ArrayList<Transaction> accountTransactions = new ArrayList<>();
+        for (Transaction transaction : transactions) {
+            if (transaction.from.equals(account.name)) {
+                accountTransactions.add(transaction);
+            }
+            if (transaction.to.equals(account.name)) {
+                accountTransactions.add(transaction);
+            }
+        }
+        return accountTransactions;
+    }
+
+    //
+
 
 }
