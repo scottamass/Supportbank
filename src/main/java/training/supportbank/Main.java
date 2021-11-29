@@ -31,19 +31,7 @@ public class Main {
         if (command.equals("1")) {
             //  System.out.println("please type account name");
             //String search = inputScanner.nextLine();
-
-
-            for (Account account : accounts) {
-
-                List<Transaction> transactionsList = getTransactionsForAccount(transactions, account);
-                //      if (account.equals("Sarah T")) {
-
-                System.out.println(transactionsList);
-
-                //     }
-               
-            }
-
+            displayTransactionsForAccount();
 
         }
 
@@ -123,6 +111,22 @@ public class Main {
 
         }
         return accounts;
+    }
+
+    private static List<Transaction> displayTransactionsForAccount() {
+        List<Transaction> transactions = populateTransactions();
+        List<Account> accounts = createEmptyAccounts(transactions);
+        System.out.println("please enter customer name ");
+        Scanner search = new Scanner(System.in);
+        String customerName = search.nextLine();
+        for (Account account : accounts) {
+            List<Transaction> transactionsList = getTransactionsForAccount(transactions, account);
+            if (customerName.equals(account.name)) {
+                System.out.println(transactionsList);
+
+            }
+        }
+        return null;
     }
 
     private void addToAccount() {
