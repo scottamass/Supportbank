@@ -18,7 +18,7 @@ public class Main {
         //reformat code
 
         Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Welcome to SupportBank! You have these command options: \n - (1) List All \n - List [Account]");
+        System.out.println("Welcome to SupportBank! You have these command options: \n - (1) - List [Account] \n -(2) - List balance for each account  ");
         String command = inputScanner.nextLine();
         ///to-do add if statement for list all and list account
         List<Transaction> transactions = populateTransactions();
